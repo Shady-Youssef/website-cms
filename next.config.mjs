@@ -1,4 +1,3 @@
-// next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -6,8 +5,8 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'big-comfort-da5fef7983.strapiapp.com',
-        pathname: '/uploads/**',
+        hostname: 'big-comfort-da5fef7983.media.strapiapp.com',
+        pathname: '/**',
       },
     ],
   },

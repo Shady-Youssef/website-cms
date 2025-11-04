@@ -7,18 +7,11 @@ export default function Home() {
 
   useEffect(() => {
     async function getData() {
-      try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/articles?populate=*`
-        );
-        const data = await res.json();
-
-        // لو البيانات فيها attributes أو لا
-        const list = data.data.map((item) => item.attributes || item);
-        setArticles(list);
-      } catch (err) {
-        console.error('Fetch error:', err);
-      }
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/articles?populate=*`
+      );
+      const data = await res.json();
+      setArticles(data.data);
     }
 
     getData();
@@ -27,18 +20,19 @@ export default function Home() {
   return (
     <main style={{ padding: '20px' }}>
       <h1>Articles</h1>
-
       {articles.length === 0 ? (
         <p>Loading...</p>
       ) : (
         <div>
-          {articles.map((article, index) => {
-            const imageUrl = article.image?.url
-              ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${article.image.url}`
-              : '/no-image.png';
+          {articles.map((article) => {
+            // البيانات هنا مش جوا attributes زي زمان
+            const imageUrl =
+              article.image && article.image.length > 0
+                ? article.image[0].url
+                : '/no-image.png';
 
             return (
-              <div key={index} style={{ marginBottom: '20px' }}>
+              <div key={article.id} style={{ marginBottom: '20px' }}>
                 <h2>{article.title}</h2>
                 <Image
                   src={imageUrl}
