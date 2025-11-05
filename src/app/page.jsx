@@ -9,7 +9,7 @@ async function getArticles() {
   const res = await fetch(
     "https://big-comfort-da5fef7983.strapiapp.com/api/articles?populate=*",
     {
-      next: { revalidate: 300 },
+      next: { revalidate: 60 },
     }
   );
   const data = await res.json();
