@@ -52,7 +52,7 @@ export default async function Home() {
 
         return (
             <Grid key={article.id}  size={{xs:12, md:4}}>
-          <Box component={'article'} sx={{mb:4, textAlign:'center'}}>
+          <Box component={'article'} sx={{mb:4, textAlign:'right'}}>
             {img && (
               <Image
                 src={img}
