@@ -1,7 +1,7 @@
 // app/page.jsx
 import Image from "next/image";
 import getStrapiImage from "@/utils/getStrapiImage";
-import { Box, Container, Grid } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
 
 
 // 1️⃣ دالة بتجيب المقالات من Strapi
@@ -44,7 +44,7 @@ export default async function Home() {
     <Container maxWidth="xl">
       
     <main>
-      <h1>Latest Articles</h1>
+      <Typography component={'h1'} variant="h3" color="initial">Latest Articles</Typography>
       <Grid container spacing={2} >
 
       {articles.map((article) => {
@@ -65,6 +65,7 @@ export default async function Home() {
             )}
             <h2>{article.title}</h2>
             <p>{article.description}</p>
+            <p>{article.content}</p>
           </Box>
       </Grid>
         );
